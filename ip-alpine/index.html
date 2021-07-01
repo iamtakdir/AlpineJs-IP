@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Location </title>
+    <script src="//cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+
+<body>
+    <div id="api-text" x-data="api" x-init="getApi()">
+        <p class="sm-txt">Here is your IP Address: </p>
+        <p class="ip-text" x-text="ip"></p>
+        <p class="text">IP ADDRESS SYSTEM MADE WITH ALPINE JS </p>
+        <p class="text"> http://github.com/iamtakdir </p>
+    </div>
+    <center>
+        <div x-data="api" x-init="getApi()">
+            <h3 x-text="ip"> </h3>
+        </div>
+    </center>
+</body>
+
+<script>
+    const api = {
+        ip: "Loading ...",
+
+        getApi() {
+            fetch("https://api.ipify.org?format=json")
+                .then(res => res.json())
+                .then(data => {
+                    this.ip = data.ip
+                })
+        }
+    }
+</script>
+
+</html>
